@@ -142,6 +142,26 @@ namespace BankingApplication.Models {
 
             Balance -= bill.Amount;
             GenerateTransaction(Transaction.BillPayTransaction, bill.Amount, 0);
+            if(bill.Period != BillPay.Periods.OnceOff)
+            {
+                switch (bill.Period)
+                {
+                    case BillPay.Periods.Monthly:
+                        bill.ScheduleDate = bill.ScheduleDate.AddMonths(1);
+                        bill.ModifyDate = DateTime.UtcNow;
+                        break;
+                    case BillPay.Periods.Quarterly:
+                        bill.ScheduleDate = bill.ScheduleDate.AddMonths(3);
+                        bill.ModifyDate = DateTime.UtcNow;
+                        break;
+                    case BillPay.Periods.Annually:
+                        bill.ScheduleDate = bill.ScheduleDate.AddYears(1);
+                        bill.ModifyDate = DateTime.UtcNow;
+                        break;
+                    default:
+                        break;
+                }
+            }
             return true;
 
         }

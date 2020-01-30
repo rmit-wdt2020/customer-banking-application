@@ -65,6 +65,10 @@ namespace BankingApplication.HostedServices {
                     {
                         repo.BillPay.Delete(bill);
                     }
+                    else
+                    {
+                        repo.BillPay.Update(bill);
+                    }
                 }
                 await repo.SaveChanges();
 
