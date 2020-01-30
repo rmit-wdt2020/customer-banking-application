@@ -12,7 +12,18 @@ Repository for the NWBA Online Banking Application Project.
 This project was made in ASP.net core in Visual Studio while being hosted on a Microsoft Sql Server.
 It is composed of a base project written in C# as MVC pattern and a seperate class library containing a generic repository pattern.
 This project utilizes EF core to manage and validate business model objects.
+The repository is utilized via the wrapper objects contained under Data/RepositoryWrapper in the project files. 
+
 In order to run this project the solution must be opened in Visual Studio and the project needs to reference the dll included in this github repository. RepositoryDLL contains both the DLL and the project solution for viewing the repository pattern.
+
+Business objects include the Account, Billpay, Login, Billpayservice and Repository wrapper. 
+The Account model object handles ATM transactions and the payment of bills through methods within th objects. 
+The Billpay model object allows for updating when bills are modified. 
+The Login model handles validation users changing their passwords. 
+The Billpay hosted service is run every 15 seconds to automatically check for due bills and pay them. 
+The repository wrapper allows for generic calls of EF Core to interact with the database. This with a wrapper allows for future implementation of methods for simplified DB exchange. 
+
+All of these model objects were chosen as the data required for these tasks is contained within them so it would seem logical that they would control and validate them in order to complete business operations. This also keeps controllers away from model logic.
 
 Code references: 
 
